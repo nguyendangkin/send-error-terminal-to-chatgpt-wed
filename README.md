@@ -21,7 +21,7 @@ Công cụ này giúp bạn nhanh chóng gửi các thông báo lỗi từ termi
 
     ```
     git clone https://github.com/your-username/error-to-chatgpt.git
-    cd error-to-chatgpt
+    cd send-error-terminal-to-chatgpt-wed
     ```
 
 2. Chạy script cài đặt:
