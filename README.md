@@ -21,7 +21,7 @@ Công cụ này giúp bạn nhanh chóng gửi các thông báo lỗi từ termi
 
     ```
     git clone https://github.com/your-username/error-to-chatgpt.git
-    cd send-error-terminal-to-chatgpt-wed
+    cd error-to-chatgpt
     ```
 
 2. Chạy script cài đặt:
@@ -33,6 +33,7 @@ Công cụ này giúp bạn nhanh chóng gửi các thông báo lỗi từ termi
 3. Khởi động lại terminal của bạn hoặc chạy:
     ```
     source ~/.bashrc
+    source ~/.zshrc
     ```
 
 ## Sử dụng
@@ -48,13 +49,9 @@ Công cụ này giúp bạn nhanh chóng gửi các thông báo lỗi từ termi
 
 ## Xử lý sự cố
 
--   Nếu lệnh không hoạt động, hãy đảm bảo rằng bạn đã khởi động lại terminal hoặc chạy `source ~/.bashrc`.
+-   Nếu lệnh không hoạt động, hãy đảm bảo rằng bạn đã khởi động lại terminal hoặc chạy `source ~/.bashrc` hoặc `source ~/.zshrc`.
 -   Đối với người dùng WSL: Nếu trình duyệt không tự động mở, URL sẽ được sao chép vào clipboard. Bạn có thể mở trình duyệt Windows và dán URL vào.
 
 ## Đóng góp
 
 Đóng góp luôn được chào đón! Vui lòng mở một issue hoặc tạo một pull request.
-
-## Giấy phép
-
-MIT License. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
