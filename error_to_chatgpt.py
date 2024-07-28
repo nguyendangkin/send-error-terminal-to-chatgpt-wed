@@ -22,11 +22,17 @@ def open_browser(url, new_tab=False):
                 subprocess.run(["open", "-na", "Google Chrome", "--args", "--new-tab", url], check=True)
             else:
                 subprocess.run(["open", url], check=True)
-        else:  # Linux và các hệ điều hành khác
-            if new_tab:
-                subprocess.run(["xdg-open", url], check=True)
+        else:  # Linux và các hệ điều hành khác, bao gồm WSL
+            if "microsoft-standard" in platform.uname().release:  # WSL detection
+                if new_tab:
+                    subprocess.run(["powershell.exe", "Start", f'"{url}"', "-WindowStyle", "Normal"], check=True)
+                else:
+                    subprocess.run(["powershell.exe", "Start", f'"{url}"'], check=True)
             else:
-                subprocess.run(["xdg-open", url], check=True)
+                if new_tab:
+                    subprocess.run(["xdg-open", url], check=True)
+                else:
+                    subprocess.run(["xdg-open", url], check=True)
     except subprocess.CalledProcessError:
         print("Không thể mở trình duyệt tự động. URL đã được copy vào clipboard.")
         pyperclip.copy(url)
