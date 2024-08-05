@@ -35,8 +35,6 @@ copy "%~dp0error_to_chatgpt.py" "%install_dir%"
     echo python "%install_dir%\error_to_chatgpt.py" %%*
 ) > "%install_dir%\eo.bat"
 
-copy "%install_dir%\eo.bat" "%install_dir%\eoo.bat"
-
 :: Thêm thư mục vào PATH
 for /f "tokens=2*" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set "current_path=%%b"
 setx /M PATH "%current_path%;%install_dir%"
