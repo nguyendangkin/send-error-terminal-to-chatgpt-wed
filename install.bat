@@ -29,11 +29,17 @@ mkdir "%install_dir%" 2>nul
 :: Copy script vào thư mục cài đặt
 copy "%~dp0error_to_chatgpt.py" "%install_dir%"
 
-:: Tạo file batch cho lệnh 'eo' và 'eoo'
+:: Tạo file batch cho lệnh 'eo'
 (
     echo @echo off
-    echo python "%install_dir%\error_to_chatgpt.py" %%*
+    echo python "C:\Program Files\error-to-chatgpt\error_to_chatgpt.py" %%*
 ) > "%install_dir%\eo.bat"
+
+:: Tạo file batch cho lệnh 'eoo'
+(
+    echo @echo off
+    echo python "C:\Program Files\error-to-chatgpt\error_to_chatgpt.py" eoo %%*
+) > "%install_dir%\eoo.bat"
 
 :: Thêm thư mục vào PATH
 for /f "tokens=2*" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set "current_path=%%b"

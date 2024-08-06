@@ -1,59 +1,61 @@
 # Error to ChatGPT
 
-This tool allows you to quickly send error messages or any clipboard content to ChatGPT with optional custom introductions.
+Công cụ này cho phép bạn nhanh chóng gửi các thông báo lỗi hoặc bất kỳ nội dung nào từ clipboard đến ChatGPT với phần giới thiệu tùy chọn.
 
-## Installation
+## Cài đặt
 
-1. Clone this repository:
+1. Clone repository này:
 
-    ```
+    ```bash
     git clone https://github.com/yourusername/error-to-chatgpt.git
     ```
 
-2. Navigate to the cloned directory:
+2. Di chuyển đến thư mục đã clone:
 
-    ```
+    ```bash
     cd error-to-chatgpt
     ```
 
-3. Run the install script with administrator privileges:
+3. Chạy script cài đặt với quyền admin:
 
-    - Right-click on `install.bat`
-    - Select "Run as administrator"
+    - Nhấp chuột phải vào `install.bat`
+    - Chọn "Run as administrator"
 
-4. Restart your command prompt to use the new commands.
+4. Khởi động lại command prompt để sử dụng các lệnh mới.
 
-## Usage
+## Sử dụng
 
-1. Copy the text you want to send to ChatGPT to your clipboard.
-2. Open a command prompt and use one of the following commands:
-    - `eo` to send the clipboard content to ChatGPT as an error message
-    - `eo [custom introduction]` to send the clipboard content with a custom introduction
+1. Sao chép văn bản bạn muốn gửi đến ChatGPT vào clipboard.
+2. Mở command prompt và sử dụng một trong các lệnh sau:
+    - `eo` để gửi nội dung clipboard đến ChatGPT dưới dạng thông báo lỗi.
+    - `eo [phần giới thiệu tùy chọn]` để gửi nội dung clipboard với phần giới thiệu tùy chỉnh.
+    - `eoo [nội dung truy vấn]` để gửi truy vấn tùy chỉnh trực tiếp mà không sử dụng clipboard.
 
-Examples:
+### Ví dụ:
 
--   `eo` will send "Hãy giúp tôi sửa lỗi này: [clipboard content]" to ChatGPT
--   `eo là cái gì` will send "[clipboard content] là cái gì" to ChatGPT
+-   `eo` sẽ gửi `"Hãy giúp tôi sửa lỗi này: [nội dung clipboard]"` đến ChatGPT.
+-   `eo là cái gì` sẽ gửi `"[nội dung clipboard] là cái gì"` đến ChatGPT.
+-   `eoo lỗi này là gì` sẽ gửi `"lỗi này là gì"` trực tiếp mà không sử dụng clipboard.
 
-The tool will automatically open your default web browser with the ChatGPT query.
+Công cụ này sẽ tự động mở trình duyệt mặc định của bạn với truy vấn ChatGPT.
 
-## Requirements
+## Yêu cầu
 
--   Windows 10 or later
--   Python 3.6 or later
--   Internet connection (for initial setup and usage)
+-   Windows 10 hoặc mới hơn
+-   Python 3.6 hoặc mới hơn
+-   Kết nối internet (cho thiết lập ban đầu và sử dụng)
 
-## Troubleshooting
+## Khắc phục sự cố
 
-If you encounter any issues, please ensure that:
+Nếu gặp vấn đề, hãy đảm bảo rằng:
 
--   You ran the install script with administrator privileges
--   You've restarted your command prompt after installation
--   Python and pyperclip are correctly installed
--   Your clipboard contains the text you want to send
+-   Bạn đã chạy script cài đặt với quyền admin
+-   Bạn đã khởi động lại command prompt sau khi cài đặt
+-   Python và pyperclip đã được cài đặt đúng cách
+-   Clipboard của bạn chứa nội dung bạn muốn gửi
 
-For further assistance, please open an issue on this GitHub repository.
+Để được hỗ trợ thêm, vui lòng mở một issue trên repository GitHub này.
 
-## Note
+## Lưu ý
 
-This tool uses the clipboard content as the main part of the query. Make sure you've copied the desired text before running the command.
+Công cụ này sử dụng nội dung clipboard làm phần chính của truy vấn, trừ khi bạn sử dụng lệnh `eoo`. Hãy chắc chắn rằng bạn đã sao chép văn bản mong muốn trước khi chạy lệnh.

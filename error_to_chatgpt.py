@@ -24,20 +24,22 @@ def open_browser(url):
         print(f"URL: {url}")
         print("Vui lòng mở trình duyệt và dán URL này vào thanh địa chỉ.")
 
-def send_to_chatgpt(custom_intro=None):
-    clipboard_content = pyperclip.paste()
-    
-    if custom_intro:
-        query = f"{clipboard_content} {custom_intro}"
-    else:
-        query = f"Hãy giúp tôi sửa lỗi này: {clipboard_content}"
+def send_to_chatgpt(query, use_clipboard=True):
+    if use_clipboard:
+        clipboard_content = pyperclip.paste()
+        query = f"{clipboard_content} {query}" if query else f"Hãy giúp tôi sửa lỗi này: {clipboard_content}"
     
     url = create_chatgpt_url(query)
     open_browser(url)
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        custom_intro = " ".join(sys.argv[1:])
-        send_to_chatgpt(custom_intro)
+    args = sys.argv[1:]
+    if args and args[0].lower() == "eoo":
+        if len(args) > 1:
+            query = " ".join(args[1:])
+            send_to_chatgpt(query, use_clipboard=False)
+        else:
+            print("Sử dụng: eoo [nội dung truy vấn]")
     else:
-        send_to_chatgpt()
+        custom_intro = " ".join(args) if args else None
+        send_to_chatgpt(custom_intro)
