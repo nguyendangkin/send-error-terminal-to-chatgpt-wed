@@ -10,40 +10,55 @@ if %errorLevel% neq 0 (
     exit /b 1
 )
 
-:: Cài đặt Python nếu chưa có
-where python >nul 2>&1
-if %errorLevel% neq 0 (
-    echo Python is not installed. Installing Python...
-    powershell -Command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe -OutFile python-installer.exe"
-    python-installer.exe /quiet InstallAllUsers=1 PrependPath=1
-    del python-installer.exe
+:: Kiểm tra và thông báo nếu không có Python
+(
+    where python >nul 2>&1
+    if %errorLevel% neq 0 (
+        python --version >nul 2>&1
+        if %errorLevel% neq 0 (
+            echo Python is not installed. Please download and install Python from:
+            echo https://www.python.org/downloads/
+            pause
+            exit /b 1
+        )
+    )
+) || (
+    echo Python is not installed. Please download and install Python from:
+    echo https://www.python.org/downloads/
+    pause
+    exit /b 1
 )
-
-:: Cài đặt pyperclip
-pip install pyperclip
 
 :: Tạo thư mục trong Program Files
 set "install_dir=%ProgramFiles%\error-to-chatgpt"
-mkdir "%install_dir%" 2>nul
+if not exist "%install_dir%" (
+    mkdir "%install_dir%" 2>nul
+)
 
 :: Copy script vào thư mục cài đặt
-copy "%~dp0error_to_chatgpt.py" "%install_dir%"
+copy "%~dp0error_to_chatgpt.py" "%install_dir%" /Y
 
 :: Tạo file batch cho lệnh 'eo'
 (
     echo @echo off
-    echo python "C:\Program Files\error-to-chatgpt\error_to_chatgpt.py" %%*
+    echo python "%install_dir%\error_to_chatgpt.py" %%*
 ) > "%install_dir%\eo.bat"
 
 :: Tạo file batch cho lệnh 'eoo'
 (
     echo @echo off
-    echo python "C:\Program Files\error-to-chatgpt\error_to_chatgpt.py" eoo %%*
+    echo python "%install_dir%\error_to_chatgpt.py" eoo %%*
 ) > "%install_dir%\eoo.bat"
 
-:: Thêm thư mục vào PATH
-for /f "tokens=2*" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set "current_path=%%b"
-setx /M PATH "%current_path%;%install_dir%"
+:: Thêm thư mục vào PATH nếu chưa có
+set "batch_path=%install_dir%"
+for %%i in ("%PATH:;=";"%") do (
+    if "%%~i"=="%batch_path%" set "found_path=true"
+)
+if not defined found_path (
+    echo Adding %install_dir% to PATH...
+    setx /M PATH "%PATH%;%install_dir%"
+)
 
 echo Installation completed successfully.
 echo Please restart your command prompt to use 'eo' and 'eoo' commands.
