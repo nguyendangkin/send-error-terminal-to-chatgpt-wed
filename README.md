@@ -18,6 +18,7 @@ Công cụ này cho phép bạn nhanh chóng gửi các thông báo lỗi hoặc
 
 3. Chạy script cài đặt với quyền admin:
 
+    - Yêu cầu máy đã có python (nếu không, bạn vui lòng lên trang chủ python để tải và cài đặt)
     - Nhấp chuột phải vào `install.bat`
     - Chọn "Run as administrator"
 
